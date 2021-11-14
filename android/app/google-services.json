@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "1010978297823",
+    "project_id": "spor-alfa",
+    "storage_bucket": "spor-alfa.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1010978297823:android:ddb13741fde2a071e9d66a",
+        "android_client_info": {
+          "package_name": "com.sporalfa.spor_alfa_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1010978297823-moa6ehpmuv6841qco46ikl2u1n2m3uln.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.sporalfa.spor_alfa_app",
+            "certificate_hash": "6f89234d1e37c38abd94c46eddc1788c529b0dfc"
+          }
+        },
+        {
+          "client_id": "1010978297823-k2qeqafd98c5g518o2turn8dqfooqq3l.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBax_oKj8L0zDKv3_fvtK_k4Pwhrcht2iM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1010978297823-k2qeqafd98c5g518o2turn8dqfooqq3l.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

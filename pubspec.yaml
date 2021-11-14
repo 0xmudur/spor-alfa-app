@@ -30,16 +30,14 @@ dev_dependencies:
   flutter_test:
     sdk: flutter
 
-  # State management
   provider: ^6.0.1
   get_it: ^7.2.0
-  # Network
   http: ^0.13.4
-  # User interface
   carousel_slider: ^4.0.0
   google_fonts: ^2.1.0
-
-
+  firebase_messaging: ^11.1.0
+  firebase_core: ^1.10.0
+  flutter_local_notifications: ^9.1.1
 
 flutter:
 

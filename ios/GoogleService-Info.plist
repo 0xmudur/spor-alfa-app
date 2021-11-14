@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>1010978297823-c23nsb177dffkeetoni2ssf03gfqrpqp.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.1010978297823-c23nsb177dffkeetoni2ssf03gfqrpqp</string>
+	<key>ANDROID_CLIENT_ID</key>
+	<string>1010978297823-moa6ehpmuv6841qco46ikl2u1n2m3uln.apps.googleusercontent.com</string>
+	<key>API_KEY</key>
+	<string>AIzaSyCkuvOCZCPuiJLTwPMECdm4eQ7q98kCM_A</string>
+	<key>GCM_SENDER_ID</key>
+	<string>1010978297823</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.sporalfa.sporAlfaApp</string>
+	<key>PROJECT_ID</key>
+	<string>spor-alfa</string>
+	<key>STORAGE_BUCKET</key>
+	<string>spor-alfa.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:1010978297823:ios:1b5dca30989ec49ee9d66a</string>
+</dict>
+</plist>
