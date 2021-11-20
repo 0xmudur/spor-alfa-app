@@ -26,8 +26,6 @@ class _ImageSliderWidgetState extends State<ImageSliderWidget> {
 
     final List<Widget> imageSliders = imgList
         .map((item) => Container(
-
-          margin: const EdgeInsets.all(5.0),
           decoration: BoxDecoration(boxShadow: [
             BoxShadow(
               color: Colors.grey.withOpacity(0.5),
@@ -37,7 +35,7 @@ class _ImageSliderWidgetState extends State<ImageSliderWidget> {
             ),
           ],),
           child: ClipRRect(
-              borderRadius: const BorderRadius.all(Radius.circular(5.0)),
+              borderRadius: const BorderRadius.all(Radius.circular(8.0)),
               child: Stack(
                 children: <Widget>[
                   Image.network(item, fit: BoxFit.cover, width: 1000.0),

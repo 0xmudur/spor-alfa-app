@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:spor_alfa_app/common/spor_alfa_theme.dart';
 
 class NewsContainerMoreWidget extends StatelessWidget {
   List<String> imgList = [
@@ -15,7 +16,7 @@ class NewsContainerMoreWidget extends StatelessWidget {
     return Container(
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(10),
-        border: Border.all(color: Colors.grey, width: 1),
+        border: Border.all(color: SporAlfaTheme.primaryColor, width: 1),
         boxShadow: [
           BoxShadow(
             color: Colors.grey.withOpacity(0.3),
@@ -29,9 +30,9 @@ class NewsContainerMoreWidget extends StatelessWidget {
         children: [
           Expanded(
             child: ClipRRect(
-                borderRadius: BorderRadius.circular(10.0),
-                child: Image.network(imgList[1],
-                    fit: BoxFit.fill, width: 1000.0)),
+                borderRadius: BorderRadius.circular(9.0),
+                child:
+                    Image.network(imgList[1], fit: BoxFit.fill, width: 1000.0)),
           ),
           Expanded(
             child: Padding(
@@ -43,30 +44,42 @@ class NewsContainerMoreWidget extends StatelessWidget {
                     "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard",
                     textAlign: TextAlign.justify,
                     overflow: TextOverflow.ellipsis,
-
                     maxLines: 2,
                     style: TextStyle(
-
                       color: Colors.black,
                       fontSize: 11.0,
                       fontWeight: FontWeight.bold,
                     ),
                   ),
-                  Text("Football",
-                    style: TextStyle(
-
-                      color: Colors.black,
-                      fontSize: 12.0,
-                      fontWeight: FontWeight.bold,
-                    ),)
+                  Row(
+                    children: [
+                      Text("/",
+                          style: TextStyle(
+                            color: SporAlfaTheme.primaryColor,
+                            fontSize: 11.0,
+                            fontWeight: FontWeight.bold,
+                          )),
+                      SizedBox(width: 3,),
+                      Align(
+                        alignment: Alignment.centerLeft,
+                        child: Text(
+                          "Football",
+                          style: TextStyle(
+                            fontStyle: FontStyle.italic,
+                            color: Colors.black,
+                            fontSize: 12.0,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      ),
+                    ],
+                  )
                 ],
               ),
             ),
           ),
-
         ],
       ),
     );
   }
-
 }

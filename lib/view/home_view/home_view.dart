@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:spor_alfa_app/view/home_view/widget/image_slider_widget.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:spor_alfa_app/view/home_view/widget/social_media_links_widget.dart';
 
 import 'widget/news_container_focus_widget.dart';
 import 'widget/news_container_more_widget.dart';
@@ -18,30 +19,28 @@ class HomeView extends StatelessWidget {
         ),
         Padding(
           padding: const EdgeInsets.all(8.0),
-          child: Container(height: 200, child: NewsContainerFocusWidget(),
+          child: Container(height: 180, child: NewsContainerFocusWidget(),
           ),
         ),
         Padding(
           padding: const EdgeInsets.all(8.0),
-          child: Container(height: 200, child: NewsContainerFocusWidget(),
+          child: Container(height: 180, child: NewsContainerFocusWidget(),
           ),
         ),
         Padding(
           padding: const EdgeInsets.all(8.0),
-          child: Container(height: 100, child: NewsContainerMoreWidget()),
+          child: Container(height: 90, child: NewsContainerMoreWidget()),
         ),
         Padding(
           padding: const EdgeInsets.all(8.0),
-          child: Container(height: 100, child: NewsContainerMoreWidget()),
+          child: Container(height: 90, child: NewsContainerMoreWidget()),
         ),
-        Row(children: [
-          SvgPicture.asset(
-            "assets/images/icons8-facebook.svg",
-            color: Theme.of(context).colorScheme.onSecondary,
-            width: 20,
-            height: 20,
-          ),
-        ],)
+        Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Container(
+              height: 30 ,child: SocialMediaLinksWidget()),
+        ),
+        SizedBox(height: 10,)
 
         // IgnorePointer(
         //   child: GridView.count(

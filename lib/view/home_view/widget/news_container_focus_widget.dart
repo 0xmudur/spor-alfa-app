@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:spor_alfa_app/common/spor_alfa_theme.dart';
 
 class NewsContainerFocusWidget extends StatefulWidget {
 
@@ -23,7 +24,7 @@ class _NewsContainerFocusWidgetState extends State<NewsContainerFocusWidget> {
     return Container(
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(10),
-        border: Border.all(color: Colors.grey, width: 1),
+        border: Border.all(color: SporAlfaTheme.primaryColor, width: 1),
         boxShadow: [
           BoxShadow(
             color: Colors.grey.withOpacity(0.3),
@@ -36,7 +37,7 @@ class _NewsContainerFocusWidgetState extends State<NewsContainerFocusWidget> {
       child: Stack(
         children: [
           ClipRRect(
-              borderRadius: BorderRadius.circular(10.0),
+              borderRadius: BorderRadius.circular(9.0),
               child: Image.network(imgList[2],
                   fit: BoxFit.fill, width: 1000.0)),
           Positioned(

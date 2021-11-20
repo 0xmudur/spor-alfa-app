@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:spor_alfa_app/common/spor_alfa_app_bar.dart';
+import 'package:spor_alfa_app/common/spor_alfa_theme.dart';
+import 'package:spor_alfa_app/view/fixture_view/fixture_view.dart';
 import 'package:spor_alfa_app/view/home_view/home_view.dart';
 import 'package:provider/provider.dart';
 
@@ -14,6 +16,7 @@ class MainView extends StatelessWidget {
   final List<Widget> _widgetOptions = <Widget>[
     const HomeView(),
      CategoryView(),
+    FixtureView()
   ];
 
   MainView({Key? key}) : super(key: key);
@@ -28,6 +31,7 @@ class MainView extends StatelessWidget {
           appBar: const SporAlfaAppBar(),
           body: _widgetOptions.elementAt(model.selectedIndex),
           bottomNavigationBar: BottomNavigationBar(
+            backgroundColor: SporAlfaTheme.primaryColor,
             items: const <BottomNavigationBarItem>[
               BottomNavigationBarItem(
                 icon: Icon(Icons.home),
@@ -37,6 +41,11 @@ class MainView extends StatelessWidget {
               BottomNavigationBarItem(
                 icon: Icon(Icons.category),
                 label: 'Category',
+                backgroundColor: Colors.purple,
+              ),
+              BottomNavigationBarItem(
+                icon: Icon(Icons.auto_graph),
+                label: 'Fixture',
                 backgroundColor: Colors.purple,
               ),
             ],
