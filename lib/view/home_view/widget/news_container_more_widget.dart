@@ -30,7 +30,11 @@ class NewsContainerMoreWidget extends StatelessWidget {
         children: [
           Expanded(
             child: ClipRRect(
-                borderRadius: BorderRadius.circular(9.0),
+                borderRadius: BorderRadius.only(
+                  topLeft: Radius.circular(9),
+                  bottomLeft: Radius.circular(9)
+                  
+                ),
                 child:
                     Image.network(imgList[1], fit: BoxFit.fill, width: 1000.0)),
           ),
@@ -44,11 +48,10 @@ class NewsContainerMoreWidget extends StatelessWidget {
                     "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard",
                     textAlign: TextAlign.justify,
                     overflow: TextOverflow.ellipsis,
-                    maxLines: 2,
+                    maxLines: 3,
                     style: TextStyle(
                       color: Colors.black,
                       fontSize: 11.0,
-                      fontWeight: FontWeight.bold,
                     ),
                   ),
                   Row(

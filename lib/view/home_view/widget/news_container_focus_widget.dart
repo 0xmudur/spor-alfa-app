@@ -68,7 +68,6 @@ class _NewsContainerFocusWidgetState extends State<NewsContainerFocusWidget> {
 
                   color: Colors.white,
                   fontSize: 13.0,
-                  fontWeight: FontWeight.bold,
                 ),
               ),
             ),

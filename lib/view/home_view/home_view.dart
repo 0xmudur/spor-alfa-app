@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:spor_alfa_app/view/home_view/widget/image_slider_widget.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:spor_alfa_app/view/home_view/widget/social_media_links_widget.dart';
 
 import 'widget/news_container_focus_widget.dart';
