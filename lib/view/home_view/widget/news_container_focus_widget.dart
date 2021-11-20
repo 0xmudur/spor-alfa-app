@@ -1,17 +1,14 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-class NewsContainerWidget extends StatefulWidget {
-
-  int maxTitleLine;
+class NewsContainerFocusWidget extends StatefulWidget {
 
   @override
-  _NewsContainerWidgetState createState() => _NewsContainerWidgetState();
+  _NewsContainerFocusWidgetState createState() => _NewsContainerFocusWidgetState();
 
-  NewsContainerWidget({required this.maxTitleLine});
 }
 
-class _NewsContainerWidgetState extends State<NewsContainerWidget> {
+class _NewsContainerFocusWidgetState extends State<NewsContainerFocusWidget> {
   List<String> imgList = [
     'https://images.unsplash.com/photo-1520342868574-5fa3804e551c?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=6ff92caffcdd63681a35134a6770ed3b&auto=format&fit=crop&w=1951&q=80',
     'https://images.unsplash.com/photo-1522205408450-add114ad53fe?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=368f45b0888aeb0b7b08e3a1084d3ede&auto=format&fit=crop&w=1950&q=80',
@@ -36,30 +33,46 @@ class _NewsContainerWidgetState extends State<NewsContainerWidget> {
           ),
         ],
       ),
-      child: Column(
+      child: Stack(
         children: [
-          Expanded(
-            flex: 3,
-            child: ClipRRect(
-                borderRadius: BorderRadius.circular(10.0),
-                child: Image.network(imgList[2],
-                    fit: BoxFit.fill, width: 1000.0)),
-          ),
-          SizedBox(
-            height: 5,
-          ),
-          Expanded(
-              flex: 1,
-              child: Padding(
-                padding: const EdgeInsets.only(right: 10, left: 10),
-                child: Text(
-                  "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard. ",
-                  textAlign: TextAlign.justify,
-                  overflow: TextOverflow.ellipsis,
-                  maxLines: widget.maxTitleLine,
-                  style: TextStyle(fontSize: 12, fontWeight: FontWeight.bold),
+          ClipRRect(
+              borderRadius: BorderRadius.circular(10.0),
+              child: Image.network(imgList[2],
+                  fit: BoxFit.fill, width: 1000.0)),
+          Positioned(
+            bottom: 0.0,
+            left: 0.0,
+            right: 0.0,
+            child: Container(
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(10),
+                gradient: LinearGradient(
+                  colors: [
+                    Color.fromARGB(200, 0, 0, 0),
+                    Color.fromARGB(0, 0, 0, 0)
+                  ],
+                  begin: Alignment.bottomCenter,
+                  end: Alignment.topCenter,
                 ),
-              ))
+              ),
+              padding: const EdgeInsets.symmetric(
+                  vertical: 10.0, horizontal: 20.0),
+              child: const Text(
+                "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard",
+                textAlign: TextAlign.justify,
+                overflow: TextOverflow.ellipsis,
+
+                maxLines: 2,
+                style: TextStyle(
+
+                  color: Colors.white,
+                  fontSize: 13.0,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+            ),
+          )
+
         ],
       ),
     );
