@@ -1,5 +1,8 @@
+import 'dart:typed_data';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:spor_alfa_app/common/spor_alfa_progress_bar.dart';
 import 'package:spor_alfa_app/common/spor_alfa_theme.dart';
 import 'package:spor_alfa_app/view_model/home_view_model.dart';
 import 'package:provider/provider.dart';
@@ -17,6 +20,7 @@ class NewsContainerFocusWidget extends StatefulWidget {
 
 class _NewsContainerFocusWidgetState extends State<NewsContainerFocusWidget> {
   HomeViewModel viewModel = HomeViewModel();
+  var newsImage;
 
   List<String> imgList = [
     'https://images.unsplash.com/photo-1520342868574-5fa3804e551c?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=6ff92caffcdd63681a35134a6770ed3b&auto=format&fit=crop&w=1951&q=80',
@@ -34,23 +38,24 @@ class _NewsContainerFocusWidgetState extends State<NewsContainerFocusWidget> {
   }
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context)  {
     return ChangeNotifierProvider<HomeViewModel>(
       create: (context) => viewModel,
       child: Consumer<HomeViewModel>(
         builder: (context, model, child) => Container(
           child: Stack(
             children: [
+              viewModel.currentState == CurrentState.loading
+                  ? Container(child: Center(child: SporAlfaProgressBar())) :
               ClipRRect(
-                  child: Image.network(imgList[2],
+                  child: Image.memory(viewModel.newsImage,
                       fit: BoxFit.fill, width: 1000.0)),
               Positioned(
                 bottom: 0.0,
                 left: 0.0,
                 right: 0.0,
                 child: Container(
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(10),
+                  decoration: const BoxDecoration(
                     gradient: LinearGradient(
                       colors: [
                         Color.fromARGB(200, 0, 0, 0),

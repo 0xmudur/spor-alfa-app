@@ -1,7 +1,10 @@
+import 'dart:typed_data';
+
 import 'package:flutter/cupertino.dart';
 import 'package:spor_alfa_app/model/news.dart';
 import 'package:spor_alfa_app/model/news_image.dart';
 import 'package:spor_alfa_app/service/web_service.dart';
+import 'package:spor_alfa_app/utils/base64_encoder.dart';
 
 enum CurrentState {
   idle,
@@ -13,6 +16,7 @@ class HomeViewModel with ChangeNotifier {
   WebService webService = WebService();
   CurrentState currentState = CurrentState.idle;
   List focusNews = [];
+  late Uint8List newsImage;
 
   Future<void> getFocusNews() async {
     currentState = CurrentState.loading;
@@ -32,10 +36,14 @@ class HomeViewModel with ChangeNotifier {
     notifyListeners();
   }
 
-  Future<String> getImageWithFilePath(String filePath) async {
+  Future<void> getImageWithFilePath(String filePath) async {
+    currentState = CurrentState.loading;
     var response = await webService.getImage(filePath);
-    NewsImage image = NewsImage.fromJson(response);
-    return image.image;
+    NewsImage base64Image = NewsImage.fromJson(response.first);
+    Uint8List image = Base64.imageFromBase64String(base64Image.image);
+    newsImage = image;
+    currentState = CurrentState.loaded;
+    notifyListeners();
   }
 
 }

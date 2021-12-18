@@ -26,7 +26,6 @@ class _ImageSliderWidgetState extends State<ImageSliderWidget> {
 
     final List<Widget> imageSliders = imgList
         .map((item) => Container(
-
           child: Stack(
             children: <Widget>[
               Image.network(item, fit: BoxFit.cover, width: 1000.0),
