@@ -21,8 +21,8 @@ class WebService {
     }
   }
 
-  Future<Map<String, dynamic>> getHeadline(int limit, int skip) async {
-    final response = await http.get(Uri.parse(baseURL + '/headline/public/true?limit=${limit}&skip=${skip}'));
+  Future<Map<String, dynamic>> getHeadline(int limit, int skip, bool isMain) async {
+    final response = await http.get(Uri.parse(baseURL + '/headline/public/${isMain}?limit=${limit}&skip=${skip}'));
 
     if (response.statusCode == 200) {
       var decodedResponse = utf8.decode(response.bodyBytes);
@@ -41,5 +41,6 @@ class WebService {
       throw Exception('Failed to load get all users phone number');
     }
   }
+
 
 }

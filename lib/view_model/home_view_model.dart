@@ -1,7 +1,8 @@
 import 'dart:typed_data';
 
 import 'package:flutter/cupertino.dart';
-import 'package:spor_alfa_app/model/news.dart';
+import 'package:spor_alfa_app/model/news.dart' as FOCUS;
+import 'package:spor_alfa_app/model/headline.dart' as HEADLINE;
 import 'package:spor_alfa_app/model/news_image.dart';
 import 'package:spor_alfa_app/service/web_service.dart';
 import 'package:spor_alfa_app/utils/base64_encoder.dart';
@@ -16,12 +17,13 @@ class HomeViewModel with ChangeNotifier {
   WebService webService = WebService();
   CurrentState currentState = CurrentState.idle;
   List focusNews = [];
+  List headlineNews = [];
   late Uint8List newsImage;
 
   Future<void> getFocusNews() async {
     currentState = CurrentState.loading;
     var response = await webService.getNews(10, 0);
-    News news = News.fromJson(response);
+    FOCUS.News news = FOCUS.News.fromJson(response);
     news.items.forEach((element) => focusNews.add(element));
     currentState = CurrentState.loaded;
     notifyListeners();
@@ -29,9 +31,9 @@ class HomeViewModel with ChangeNotifier {
 
   Future<void> getHeadlineNews() async {
     currentState = CurrentState.loading;
-    var response = await webService.getNews(5, 0);
-    News news = News.fromJson(response);
-    news.items.forEach((element) => focusNews.add(element));
+    var response = await webService.getHeadline(5, 0, true);
+    HEADLINE.Headline headline = HEADLINE.Headline.fromJson(response);
+    headline.items.forEach((element) => headlineNews.add(element));
     currentState = CurrentState.loaded;
     notifyListeners();
   }

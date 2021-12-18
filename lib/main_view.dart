@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:spor_alfa_app/common/spor_alfa_app_bar.dart';
 import 'package:spor_alfa_app/common/spor_alfa_theme.dart';
 import 'package:spor_alfa_app/view/fixture_view/fixture_view.dart';
 import 'package:spor_alfa_app/view/home_view/home_view.dart';

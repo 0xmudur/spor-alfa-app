@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:spor_alfa_app/common/spor_alfa_progress_bar.dart';
-import 'package:spor_alfa_app/view/home_view/widget/image_slider_widget.dart';
+import 'package:spor_alfa_app/view/home_view/widget/news_headline_widget.dart';
 import 'package:spor_alfa_app/view/home_view/widget/social_media_links_widget.dart';
 import 'package:spor_alfa_app/view_model/home_view_model.dart';
 
@@ -19,7 +19,7 @@ class _HomeViewState extends State<HomeView> {
   @override
   void initState() {
     viewModel.getFocusNews();
-    print(viewModel.focusNews);
+    viewModel.getHeadlineNews();
     super.initState();
   }
 
@@ -36,7 +36,7 @@ class _HomeViewState extends State<HomeView> {
                     height: 250, child: Center(child: SporAlfaProgressBar()))
                 : Container(
                     height: 250,
-                    child: ImageSliderWidget(),
+                    child: NewsHeadlineWidget(headlineNews: viewModel.headlineNews),
                   ),
 
             /// Focus news
@@ -46,18 +46,18 @@ class _HomeViewState extends State<HomeView> {
                 : Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: ListView.builder(
-                        scrollDirection: Axis.vertical,
-                        shrinkWrap: true,
-                        physics: ClampingScrollPhysics(),
-                        itemCount: viewModel.focusNews.length,
-                        itemBuilder: (context, index) => Container(
-                              padding: EdgeInsets.only(top: 8),
-                              height: 180,
-                              child: NewsContainerFocusWidget(
-                                  title: viewModel.focusNews[index].title,
-                                  imageFilePath:
-                                      viewModel.focusNews[index].imageSrc),
-                            )),
+                      scrollDirection: Axis.vertical,
+                      shrinkWrap: true,
+                      physics: ClampingScrollPhysics(),
+                      itemCount: viewModel.focusNews.length,
+                      itemBuilder: (context, index) => Container(
+                        padding: EdgeInsets.only(top: 8),
+                        height: 180,
+                        child: NewsContainerFocusWidget(
+                            title: viewModel.focusNews[index].title,
+                            imageFilePath: viewModel.focusNews[index].imageSrc),
+                      ),
+                    ),
                   ),
 
             /// More news
@@ -76,17 +76,6 @@ class _HomeViewState extends State<HomeView> {
             )
           ],
         );
-        // if (viewModel.currentState == CurrentState.loading){
-        //   return Center(child: CircularProgressIndicator());
-        //
-        // } else if (viewModel.currentState == CurrentState.loaded) {
-        //   print(viewModel.focusNews[0].title);
-        //   return Center(child: Text("Data Loaded"));
-        // }
-        //
-        // else {
-        //   return Center(child: Text("Bir hata oluştu. Lütfen daha sonra tekar deneyin"),);
-        // }
       }),
     );
   }

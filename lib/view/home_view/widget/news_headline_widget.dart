@@ -1,13 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:spor_alfa_app/model/news.dart';
 
-class ImageSliderWidget extends StatefulWidget {
+class NewsHeadlineWidget extends StatefulWidget {
+  List headlineNews;
+
+  NewsHeadlineWidget({required this.headlineNews});
 
   @override
-  State<ImageSliderWidget> createState() => _ImageSliderWidgetState();
+  State<NewsHeadlineWidget> createState() => _NewsHeadlineWidgetState();
 }
 
-class _ImageSliderWidgetState extends State<ImageSliderWidget> {
+class _NewsHeadlineWidgetState extends State<NewsHeadlineWidget> {
   final CarouselController _controller = CarouselController();
 
   int _current = 0;
@@ -23,7 +27,7 @@ class _ImageSliderWidgetState extends State<ImageSliderWidget> {
 
   @override
   Widget build(BuildContext context) {
-
+    print(widget.headlineNews);
     final List<Widget> imageSliders = imgList
         .map((item) => Container(
           child: Stack(
@@ -44,16 +48,13 @@ class _ImageSliderWidgetState extends State<ImageSliderWidget> {
                       end: Alignment.topCenter,
                     ),
                   ),
-                      padding: const EdgeInsets.symmetric(
-                          vertical: 12.0, horizontal: 20.0),
+                      padding: const EdgeInsets.symmetric(vertical: 12.0, horizontal: 20.0),
                       child: const Text(
                     "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard",
                     textAlign: TextAlign.justify,
                     overflow: TextOverflow.ellipsis,
-
                     maxLines: 2,
                     style: TextStyle(
-
                       color: Colors.white,
                       fontSize: 14.0,
                       fontWeight: FontWeight.bold,
@@ -68,22 +69,19 @@ class _ImageSliderWidgetState extends State<ImageSliderWidget> {
 
     return Column(children: [
       Expanded(
-        child: Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: CarouselSlider(
-            items: imageSliders,
-            carouselController: _controller,
-            options: CarouselOptions(
-                autoPlay: true,
-                viewportFraction: 1,
-                enlargeCenterPage: false,
-                aspectRatio: 2,
-                onPageChanged: (index, reason) {
-                  setState(() {
-                    _current = index;
-                  });
-                }),
-          ),
+        child: CarouselSlider(
+          items: imageSliders,
+          carouselController: _controller,
+          options: CarouselOptions(
+              autoPlay: true,
+              viewportFraction: 1,
+              enlargeCenterPage: false,
+              aspectRatio: 2,
+              onPageChanged: (index, reason) {
+                setState(() {
+                  _current = index;
+                });
+              }),
         ),
       ),
       Row(
@@ -92,11 +90,11 @@ class _ImageSliderWidgetState extends State<ImageSliderWidget> {
           return GestureDetector(
             onTap: () => _controller.animateToPage(entry.key),
             child: Container(
-              width: 8.0,
-              height: 8.0,
+              width: 18.0,
+              height: 4.0,
               margin: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 4.0),
               decoration: BoxDecoration(
-                  shape: BoxShape.circle,
+                  shape: BoxShape.rectangle,
                   color: (Theme.of(context).brightness == Brightness.dark
                       ? Colors.white
                       : Colors.black)
