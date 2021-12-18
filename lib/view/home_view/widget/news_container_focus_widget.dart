@@ -1,8 +1,14 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:spor_alfa_app/common/spor_alfa_theme.dart';
+import 'package:spor_alfa_app/view_model/home_view_model.dart';
+import 'package:provider/provider.dart';
 
 class NewsContainerFocusWidget extends StatefulWidget {
+  String title;
+  String imageFilePath;
+
+  NewsContainerFocusWidget({required this.title, required this.imageFilePath});
 
   @override
   _NewsContainerFocusWidgetState createState() => _NewsContainerFocusWidgetState();
@@ -10,6 +16,8 @@ class NewsContainerFocusWidget extends StatefulWidget {
 }
 
 class _NewsContainerFocusWidgetState extends State<NewsContainerFocusWidget> {
+  HomeViewModel viewModel = HomeViewModel();
+
   List<String> imgList = [
     'https://images.unsplash.com/photo-1520342868574-5fa3804e551c?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=6ff92caffcdd63681a35134a6770ed3b&auto=format&fit=crop&w=1951&q=80',
     'https://images.unsplash.com/photo-1522205408450-add114ad53fe?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=368f45b0888aeb0b7b08e3a1084d3ede&auto=format&fit=crop&w=1950&q=80',
@@ -20,48 +28,55 @@ class _NewsContainerFocusWidgetState extends State<NewsContainerFocusWidget> {
   ];
 
   @override
+  void initState() {
+    viewModel.getImageWithFilePath(widget.imageFilePath);
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
-    return Container(
-
-      child: Stack(
-        children: [
-          ClipRRect(
-              child: Image.network(imgList[2],
-                  fit: BoxFit.fill, width: 1000.0)),
-          Positioned(
-            bottom: 0.0,
-            left: 0.0,
-            right: 0.0,
-            child: Container(
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(10),
-                gradient: LinearGradient(
-                  colors: [
-                    Color.fromARGB(200, 0, 0, 0),
-                    Color.fromARGB(0, 0, 0, 0)
-                  ],
-                  begin: Alignment.bottomCenter,
-                  end: Alignment.topCenter,
+    return ChangeNotifierProvider<HomeViewModel>(
+      create: (context) => viewModel,
+      child: Consumer<HomeViewModel>(
+        builder: (context, model, child) => Container(
+          child: Stack(
+            children: [
+              ClipRRect(
+                  child: Image.network(imgList[2],
+                      fit: BoxFit.fill, width: 1000.0)),
+              Positioned(
+                bottom: 0.0,
+                left: 0.0,
+                right: 0.0,
+                child: Container(
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(10),
+                    gradient: LinearGradient(
+                      colors: [
+                        Color.fromARGB(200, 0, 0, 0),
+                        Color.fromARGB(0, 0, 0, 0)
+                      ],
+                      begin: Alignment.bottomCenter,
+                      end: Alignment.topCenter,
+                    ),
+                  ),
+                  padding: EdgeInsets.symmetric(
+                      vertical: 10.0, horizontal: 20.0),
+                  child: Text(
+                    widget.title,
+                    textAlign: TextAlign.justify,
+                    overflow: TextOverflow.ellipsis,
+                    maxLines: 2,
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 13.0,
+                    ),
+                  ),
                 ),
-              ),
-              padding: const EdgeInsets.symmetric(
-                  vertical: 10.0, horizontal: 20.0),
-              child: const Text(
-                "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard",
-                textAlign: TextAlign.justify,
-                overflow: TextOverflow.ellipsis,
-
-                maxLines: 2,
-                style: TextStyle(
-
-                  color: Colors.white,
-                  fontSize: 13.0,
-                ),
-              ),
-            ),
-          )
-
-        ],
+              )
+            ],
+          ),
+        ),
       ),
     );
   }
