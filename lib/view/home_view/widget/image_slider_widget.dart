@@ -26,70 +26,65 @@ class _ImageSliderWidgetState extends State<ImageSliderWidget> {
 
     final List<Widget> imageSliders = imgList
         .map((item) => Container(
-          decoration: BoxDecoration(boxShadow: [
-            BoxShadow(
-              color: Colors.grey.withOpacity(0.5),
-              spreadRadius: 5,
-              blurRadius: 7,
-              offset: Offset(0, 3), // changes position of shadow
-            ),
-          ],),
-          child: ClipRRect(
-              borderRadius: const BorderRadius.all(Radius.circular(8.0)),
-              child: Stack(
-                children: <Widget>[
-                  Image.network(item, fit: BoxFit.cover, width: 1000.0),
-                  Positioned(
-                    bottom: 0.0,
-                    left: 0.0,
-                    right: 0.0,
-                    child: Container(
-                      decoration: const BoxDecoration(
-                        gradient: LinearGradient(
-                          colors: [
-                            Color.fromARGB(200, 0, 0, 0),
-                            Color.fromARGB(0, 0, 0, 0)
-                          ],
-                          begin: Alignment.bottomCenter,
-                          end: Alignment.topCenter,
-                        ),
-                      ),
-                      padding: const EdgeInsets.symmetric(
-                          vertical: 10.0, horizontal: 20.0),
-                      child: const Text(
-                        "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard",
-                        textAlign: TextAlign.justify,
-                        overflow: TextOverflow.ellipsis,
 
-                        maxLines: 2,
-                        style: TextStyle(
-
-                          color: Colors.white,
-                          fontSize: 15.0,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
+          child: Stack(
+            children: <Widget>[
+              Image.network(item, fit: BoxFit.cover, width: 1000.0),
+              Positioned(
+                bottom: 0.0,
+                left: 0.0,
+                right: 0.0,
+                child: Container(
+                  decoration: const BoxDecoration(
+                    gradient: LinearGradient(
+                      colors: [
+                        Color.fromARGB(200, 0, 0, 0),
+                        Color.fromARGB(0, 0, 0, 0)
+                      ],
+                      begin: Alignment.bottomCenter,
+                      end: Alignment.topCenter,
                     ),
                   ),
-                ],
-              )),
+                      padding: const EdgeInsets.symmetric(
+                          vertical: 12.0, horizontal: 20.0),
+                      child: const Text(
+                    "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard",
+                    textAlign: TextAlign.justify,
+                    overflow: TextOverflow.ellipsis,
+
+                    maxLines: 2,
+                    style: TextStyle(
+
+                      color: Colors.white,
+                      fontSize: 14.0,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                ),
+              ),
+            ],
+          ),
         ))
         .toList();
 
     return Column(children: [
       Expanded(
-        child: CarouselSlider(
-          items: imageSliders,
-          carouselController: _controller,
-          options: CarouselOptions(
-              autoPlay: true,
-              enlargeCenterPage: true,
-              aspectRatio: 2.0,
-              onPageChanged: (index, reason) {
-                setState(() {
-                  _current = index;
-                });
-              }),
+        child: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: CarouselSlider(
+            items: imageSliders,
+            carouselController: _controller,
+            options: CarouselOptions(
+                autoPlay: true,
+                viewportFraction: 1,
+                enlargeCenterPage: false,
+                aspectRatio: 2,
+                onPageChanged: (index, reason) {
+                  setState(() {
+                    _current = index;
+                  });
+                }),
+          ),
         ),
       ),
       Row(
@@ -98,8 +93,8 @@ class _ImageSliderWidgetState extends State<ImageSliderWidget> {
           return GestureDetector(
             onTap: () => _controller.animateToPage(entry.key),
             child: Container(
-              width: 12.0,
-              height: 12.0,
+              width: 8.0,
+              height: 8.0,
               margin: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 4.0),
               decoration: BoxDecoration(
                   shape: BoxShape.circle,

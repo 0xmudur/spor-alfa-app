@@ -14,8 +14,8 @@ class MainView extends StatelessWidget {
   int selectedIndex = 0;
 
   final List<Widget> _widgetOptions = <Widget>[
-    const HomeView(),
-     CategoryView(),
+    HomeView(),
+    CategoryView(),
     FixtureView()
   ];
 

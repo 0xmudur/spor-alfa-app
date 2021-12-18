@@ -8,41 +8,21 @@ class WebService {
 
   factory WebService() => _instance;
 
-  String baseURL = 'http://gncmobil.ozelyazilimistanbul.com';
+  String baseURL = 'https://medyalfa.com:5001';
 
-  /// General Post method
-  Future<Map<String, dynamic>> createNewUser(user) async {
-    final response = await http.post(
-      Uri.parse(baseURL + '/api/newuser'),
-      headers: <String, String>{
-        'Content-Type': 'application/json; charset=UTF-8',
-      },
-      body: jsonEncode(<String, String>{
-        "isActive": user.isActive,
-        "userNameSurname": user.nameSurname,
-        "userPhone": user.userPhone,
-        "userTCKN": user.userTCKN
-      }),
-    );
-    if (response.statusCode == 201) {
-      return jsonDecode(response.body);
-    } else {
-      return jsonDecode(response.body);
-    }
-  }
-
-  /// General GET Method
-  Future<Map<String, dynamic>> getAllUsersPhoneNumber() async {
-    final response =
-        await http.get(Uri.parse(baseURL + '/api/phoneList'), headers: {
-      'Content-Type': 'application/json',
-      'Accept': 'application/json',
-    });
+  Future<Map<String, dynamic>> getNews(int limit, int skip) async {
+    final response = await http.get(
+        Uri.parse(baseURL + '/news/public?limit=${limit}&skip=${skip}'),
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json',
+        });
 
     if (response.statusCode == 200) {
-      return jsonDecode(response.body);
+      var decodedResponse = utf8.decode(response.bodyBytes);
+      return jsonDecode(decodedResponse);
     } else {
-      print(response.statusCode.toString());
+
       throw Exception('Failed to load get all users phone number');
     }
   }
