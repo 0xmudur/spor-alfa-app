@@ -14,7 +14,7 @@ class NewsContainerMoreWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: Colors.grey.shade200,
+      color: Colors.grey.shade300,
       child: Row(
         children: [
           Expanded(

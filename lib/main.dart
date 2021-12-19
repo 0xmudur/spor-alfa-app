@@ -41,7 +41,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
+      debugShowCheckedModeBanner: false,
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
@@ -51,7 +51,6 @@ class MyApp extends StatelessWidget {
 }
 
 class MainInit extends StatefulWidget {
-
 
   @override
   _MainInitState createState() => _MainInitState();
@@ -103,7 +102,6 @@ class _MainInitState extends State<MainInit> {
       }
     });
   }
-
 
   @override
   Widget build(BuildContext context) {

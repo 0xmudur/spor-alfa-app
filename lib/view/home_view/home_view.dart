@@ -4,6 +4,7 @@ import 'package:spor_alfa_app/view/home_view/widget/news_headline_widget.dart';
 import 'package:spor_alfa_app/view/home_view/widget/social_media_links_widget.dart';
 import 'package:spor_alfa_app/view_model/home_view_model.dart';
 
+import '../../service_locator.dart';
 import 'widget/news_container_focus_widget.dart';
 import 'widget/news_container_more_widget.dart';
 import 'package:provider/provider.dart';
@@ -14,7 +15,7 @@ class HomeView extends StatefulWidget {
 }
 
 class _HomeViewState extends State<HomeView> {
-  HomeViewModel viewModel = HomeViewModel();
+  HomeViewModel viewModel = serviceLocator<HomeViewModel>();
 
   @override
   void initState() {
@@ -36,13 +37,13 @@ class _HomeViewState extends State<HomeView> {
                     height: 250, child: Center(child: SporAlfaProgressBar()))
                 : Container(
                     height: 250,
-                    child: NewsHeadlineWidget(headlineNews: viewModel.headlineNews),
+                    child: NewsHeadlineWidget(viewModel: viewModel),
                   ),
 
             /// Focus news
             viewModel.currentState == CurrentState.loading
                 ? Container(
-                    height: 180, child: Center(child: SporAlfaProgressBar()))
+                    height: 220, child: Center(child: SporAlfaProgressBar()))
                 : Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: ListView.builder(
@@ -52,7 +53,7 @@ class _HomeViewState extends State<HomeView> {
                       itemCount: viewModel.focusNews.length,
                       itemBuilder: (context, index) => Container(
                         padding: EdgeInsets.only(top: 8),
-                        height: 180,
+                        height: 220,
                         child: NewsContainerFocusWidget(
                             title: viewModel.focusNews[index].title,
                             imageFilePath: viewModel.focusNews[index].imageSrc),
@@ -66,14 +67,14 @@ class _HomeViewState extends State<HomeView> {
               child: Container(height: 90, child: NewsContainerMoreWidget()),
             ),
 
-            /// Social media
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Container(height: 30, child: SocialMediaLinksWidget()),
-            ),
-            SizedBox(
-              height: 10,
-            )
+            // /// Social media
+            // Padding(
+            //   padding: const EdgeInsets.all(8.0),
+            //   child: Container(height: 30, child: SocialMediaLinksWidget()),
+            // ),
+            // SizedBox(
+            //   height: 10,
+            // )
           ],
         );
       }),

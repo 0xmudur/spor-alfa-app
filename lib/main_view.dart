@@ -4,6 +4,7 @@ import 'package:spor_alfa_app/view/fixture_view/fixture_view.dart';
 import 'package:spor_alfa_app/view/home_view/home_view.dart';
 import 'package:provider/provider.dart';
 
+import 'common/spor_alfa_app_bar.dart';
 import 'main_view_model.dart';
 import 'service_locator.dart';
 import 'view/catogory_view/category_view.dart';
@@ -27,7 +28,7 @@ class MainView extends StatelessWidget {
       child: Consumer<MainViewModel>(
         builder: (context, model, child) => Scaffold(
             // extendBodyBehindAppBar: true,
-          // appBar: const SporAlfaAppBar(),
+          appBar: const SporAlfaAppBar(),
           body: _widgetOptions.elementAt(model.selectedIndex),
           bottomNavigationBar: BottomNavigationBar(
             backgroundColor: SporAlfaTheme.primaryColor,
@@ -35,17 +36,14 @@ class MainView extends StatelessWidget {
               BottomNavigationBarItem(
                 icon: Icon(Icons.home),
                 label: 'Home',
-                backgroundColor: Colors.red,
               ),
               BottomNavigationBarItem(
                 icon: Icon(Icons.category),
                 label: 'Category',
-                backgroundColor: Colors.purple,
               ),
               BottomNavigationBarItem(
                 icon: Icon(Icons.auto_graph),
                 label: 'Fixture',
-                backgroundColor: Colors.purple,
               ),
             ],
             currentIndex: model.selectedIndex,
