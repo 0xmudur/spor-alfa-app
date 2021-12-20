@@ -17,7 +17,7 @@ class SporAlfaTheme {
   static TextTheme get textTheme => _textTheme;
   static final AppBarTheme _appBarTheme = const AppBarTheme().copyWith(elevation: 0);
   static AppBarTheme get appBarTheme => _appBarTheme;
-  static const Color _primaryColor = Color.fromRGBO(55, 116, 64, 1);
+  static const Color _primaryColor = Color.fromRGBO(69, 136, 51, 1.0);
   static Color get primaryColor => _primaryColor;
   static const TextSelectionThemeData _textSelectionTheme = TextSelectionThemeData(cursorColor: Color.fromRGBO(55, 116, 64, 1));
   static TextSelectionThemeData get textSelectionTheme => _textSelectionTheme;

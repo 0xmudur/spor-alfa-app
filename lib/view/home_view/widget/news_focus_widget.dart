@@ -9,18 +9,18 @@ import 'package:provider/provider.dart';
 
 import '../../../service_locator.dart';
 
-class NewsContainerFocusWidget extends StatefulWidget {
+class NewsFocusWidget extends StatefulWidget {
   String title;
   String imageFilePath;
 
-  NewsContainerFocusWidget({required this.title, required this.imageFilePath});
+  NewsFocusWidget({required this.title, required this.imageFilePath});
 
   @override
-  _NewsContainerFocusWidgetState createState() => _NewsContainerFocusWidgetState();
+  _NewsFocusWidgetState createState() => _NewsFocusWidgetState();
 
 }
 
-class _NewsContainerFocusWidgetState extends State<NewsContainerFocusWidget> {
+class _NewsFocusWidgetState extends State<NewsFocusWidget> {
   HomeViewModel viewModel = serviceLocator<HomeViewModel>();
 
   @override

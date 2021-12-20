@@ -28,44 +28,45 @@ class _NewsHeadlineWidgetState extends State<NewsHeadlineWidget> {
   @override
   Widget build(BuildContext context) {
 
-    final List<Widget> imageSliders = imgList
-        .map((item) => Container(
-          child: Stack(
-            children: <Widget>[
-              Image.memory(item, fit: BoxFit.cover, width: 1000.0),
-              Positioned(
-                bottom: 0.0,
-                left: 0.0,
-                right: 0.0,
-                child: Container(
-                  decoration: const BoxDecoration(
-                    gradient: LinearGradient(
-                      colors: [
-                        Color.fromARGB(200, 0, 0, 0),
-                        Color.fromARGB(0, 0, 0, 0)
-                      ],
-                      begin: Alignment.bottomCenter,
-                      end: Alignment.topCenter,
-                    ),
-                  ),
-                      padding: const EdgeInsets.symmetric(vertical: 12.0, horizontal: 20.0),
-                      child:  Text(
-                        widget.viewModel.headlineNews[1].news.title,
-                    textAlign: TextAlign.center,
-                    overflow: TextOverflow.ellipsis,
-                    maxLines: 2,
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 16.0,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
+
+    final List<Widget> imageSliders = imgList.asMap().entries.map((item) => Container(
+      child: Stack(
+        children: <Widget>[
+          Image.memory(item.value, fit: BoxFit.cover, width: 1000.0),
+          Positioned(
+            bottom: 0.0,
+            left: 0.0,
+            right: 0.0,
+            child: Container(
+              decoration: const BoxDecoration(
+                gradient: LinearGradient(
+                  colors: [
+                    Color.fromARGB(200, 0, 0, 0),
+                    Color.fromARGB(0, 0, 0, 0)
+                  ],
+                  begin: Alignment.bottomCenter,
+                  end: Alignment.topCenter,
                 ),
               ),
-            ],
+              padding: const EdgeInsets.symmetric(vertical: 12.0, horizontal: 20.0),
+              child:  Text(
+                widget.viewModel.headlineNews[item.key].news.title,
+                textAlign: TextAlign.center,
+                overflow: TextOverflow.ellipsis,
+                maxLines: 2,
+                style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 16.0,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+            ),
           ),
-        ))
-        .toList();
+        ],
+      ),
+    )).toList();
+
+
 
     return Column(children: [
       Expanded(

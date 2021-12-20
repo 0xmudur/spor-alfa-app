@@ -5,8 +5,8 @@ import 'package:spor_alfa_app/view/home_view/widget/social_media_links_widget.da
 import 'package:spor_alfa_app/view_model/home_view_model.dart';
 
 import '../../service_locator.dart';
-import 'widget/news_container_focus_widget.dart';
-import 'widget/news_container_more_widget.dart';
+import 'widget/news_focus_widget.dart';
+import 'widget/news_more_widget.dart';
 import 'package:provider/provider.dart';
 
 class HomeView extends StatefulWidget {
@@ -19,8 +19,9 @@ class _HomeViewState extends State<HomeView> {
 
   @override
   void initState() {
-    viewModel.getFocusNews();
-    viewModel.getHeadlineNews();
+    viewModel.getHeadlineNews(5, 0);
+    viewModel.getFocusNews(5, 0);
+    viewModel.getMoreNews(3, 5);
     super.initState();
   }
 
@@ -54,7 +55,7 @@ class _HomeViewState extends State<HomeView> {
                       itemBuilder: (context, index) => Container(
                         padding: EdgeInsets.only(top: 8),
                         height: 220,
-                        child: NewsContainerFocusWidget(
+                        child: NewsFocusWidget(
                             title: viewModel.focusNews[index].title,
                             imageFilePath: viewModel.focusNews[index].imageSrc),
                       ),
@@ -62,19 +63,24 @@ class _HomeViewState extends State<HomeView> {
                   ),
 
             /// More news
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Container(height: 90, child: NewsContainerMoreWidget()),
-            ),
-
-            // /// Social media
-            // Padding(
-            //   padding: const EdgeInsets.all(8.0),
-            //   child: Container(height: 30, child: SocialMediaLinksWidget()),
-            // ),
-            // SizedBox(
-            //   height: 10,
-            // )
+            viewModel.currentState == CurrentState.loading
+                ? Container(
+                    height: 220, child: Center(child: SporAlfaProgressBar()))
+                : Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: ListView.builder(
+                      scrollDirection: Axis.vertical,
+                      shrinkWrap: true,
+                      physics: ClampingScrollPhysics(),
+                      itemCount: viewModel.moreNews.length,
+                      itemBuilder: (context, index) => Container(
+                          height: 90,
+                          child: NewsMoreWidget(
+                              title: viewModel.moreNews[index].title,
+                              imageFilePath:
+                                  viewModel.moreNews[index].imageSrc)),
+                    ),
+                  ),
           ],
         );
       }),

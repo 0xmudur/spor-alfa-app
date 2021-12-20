@@ -42,5 +42,15 @@ class WebService {
     }
   }
 
+  Future<List<dynamic>> getCategory() async {
+    final response = await http.get(Uri.parse(baseURL + '/category/public'));
+
+    if (response.statusCode == 200) {
+      var decodedResponse = utf8.decode(response.bodyBytes);
+      return jsonDecode(decodedResponse);;
+    } else {
+      throw Exception('Failed to load get all users phone number');
+    }
+  }
 
 }

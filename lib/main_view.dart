@@ -47,7 +47,7 @@ class MainView extends StatelessWidget {
               ),
             ],
             currentIndex: model.selectedIndex,
-            selectedItemColor: Colors.amber[800],
+            selectedItemColor: Colors.grey.shade100,
             onTap: model.onTabChanged,
           )
 
