@@ -20,22 +20,32 @@ class HomeViewModel with ChangeNotifier {
   CurrentState currentState = CurrentState.idle;
   List focusNews = [];
   List headlineNews = [];
+  List moreNews = [];
   late Uint8List newsImage;
   List<Uint8List> headlineImages = [];
 
 
-  Future<void> getFocusNews() async {
+  Future<void> getFocusNews(int limit, int skip) async {
     currentState = CurrentState.loading;
-    var response = await webService.getNews(10, 0);
+    var response = await webService.getNews(limit, skip);
     FOCUS.News news = FOCUS.News.fromJson(response);
     news.items.forEach((element) => focusNews.add(element));
     currentState = CurrentState.loaded;
     notifyListeners();
   }
 
-  Future<void> getHeadlineNews() async {
+  Future<void> getMoreNews(int limit, int skip) async {
     currentState = CurrentState.loading;
-    var response = await webService.getHeadline(10, 0, true);
+    var response = await webService.getNews(limit, skip);
+    FOCUS.News news = FOCUS.News.fromJson(response);
+    news.items.forEach((element) => moreNews.add(element));
+    currentState = CurrentState.loaded;
+    notifyListeners();
+  }
+
+  Future<void> getHeadlineNews(int limit, int skip) async {
+    currentState = CurrentState.loading;
+    var response = await webService.getHeadline(limit, skip, true);
     HEADLINE.Headline headline = HEADLINE.Headline.fromJson(response);
     headline.items.forEach((element) => headlineNews.add(element));
     for (var item in headlineNews) {
