@@ -16,6 +16,7 @@ class HomeView extends StatefulWidget {
 
 class _HomeViewState extends State<HomeView> {
   HomeViewModel viewModel = serviceLocator<HomeViewModel>();
+  int moreNewsIndex = 3;
 
   @override
   void initState() {
@@ -30,58 +31,72 @@ class _HomeViewState extends State<HomeView> {
     return ChangeNotifierProvider<HomeViewModel>(
       create: (context) => viewModel,
       child: Consumer<HomeViewModel>(builder: (context, model, child) {
-        return ListView(
-          children: [
-            /// HeadLine news
-            viewModel.currentState == CurrentState.loading
-                ? Container(
-                    height: 250, child: Center(child: SporAlfaProgressBar()))
-                : Container(
-                    height: 250,
-                    child: NewsHeadlineWidget(viewModel: viewModel),
-                  ),
+        return NotificationListener<ScrollEndNotification>(
+          onNotification: (scrollEnd){
+            var metrics = scrollEnd.metrics;
+            if (metrics.atEdge) {
+              if (metrics.pixels == 0){
+                print('At top');
+              } else {
+                moreNewsIndex += 3;
+                viewModel.getMoreNews(moreNewsIndex, 5 + moreNewsIndex);
+              }
+            }
+            return true;
+          },
+          child: ListView(
+            children: [
+              /// HeadLine news
+              viewModel.currentState == CurrentState.loading
+                  ? Container(
+                      height: 250, child: Center(child: SporAlfaProgressBar()))
+                  : Container(
+                      height: 250,
+                      child: NewsHeadlineWidget(viewModel: viewModel),
+                    ),
 
-            /// Focus news
-            viewModel.currentState == CurrentState.loading
-                ? Container(
-                    height: 220, child: Center(child: SporAlfaProgressBar()))
-                : Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: ListView.builder(
-                      scrollDirection: Axis.vertical,
-                      shrinkWrap: true,
-                      physics: ClampingScrollPhysics(),
-                      itemCount: viewModel.focusNews.length,
-                      itemBuilder: (context, index) => Container(
-                        padding: EdgeInsets.only(top: 8),
-                        height: 220,
-                        child: NewsFocusWidget(
-                            title: viewModel.focusNews[index].title,
-                            imageFilePath: viewModel.focusNews[index].imageSrc),
+              /// Focus news
+              viewModel.currentState == CurrentState.loading
+                  ? Container(
+                      height: 220, child: Center(child: SporAlfaProgressBar()))
+                  : Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: ListView.builder(
+                        scrollDirection: Axis.vertical,
+                        shrinkWrap: true,
+                        physics: ClampingScrollPhysics(),
+                        itemCount: viewModel.focusNews.length,
+                        itemBuilder: (context, index) => Container(
+                          padding: EdgeInsets.only(top: 8),
+                          height: 220,
+                          child: NewsFocusWidget(
+                              title: viewModel.focusNews[index].title,
+                              imageFilePath: viewModel.focusNews[index].imageSrc),
+                        ),
                       ),
                     ),
-                  ),
 
-            /// More news
-            viewModel.currentState == CurrentState.loading
-                ? Container(
-                    height: 220, child: Center(child: SporAlfaProgressBar()))
-                : Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: ListView.builder(
-                      scrollDirection: Axis.vertical,
-                      shrinkWrap: true,
-                      physics: ClampingScrollPhysics(),
-                      itemCount: viewModel.moreNews.length,
-                      itemBuilder: (context, index) => Container(
-                          height: 90,
-                          child: NewsMoreWidget(
-                              title: viewModel.moreNews[index].title,
-                              imageFilePath:
-                                  viewModel.moreNews[index].imageSrc)),
+              /// More news
+              viewModel.currentState == CurrentState.loading
+                  ? Container(
+                      height: 220, child: Center(child: SporAlfaProgressBar()))
+                  : Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: ListView.builder(
+                        scrollDirection: Axis.vertical,
+                        shrinkWrap: true,
+                        physics: ClampingScrollPhysics(),
+                        itemCount: viewModel.moreNews.length,
+                        itemBuilder: (context, index) => Container(
+                            height: 90,
+                            child: NewsMoreWidget(
+                                title: viewModel.moreNews[index].title,
+                                imageFilePath:
+                                    viewModel.moreNews[index].imageSrc)),
+                      ),
                     ),
-                  ),
-          ],
+            ],
+          ),
         );
       }),
     );
