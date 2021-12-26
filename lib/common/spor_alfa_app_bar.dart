@@ -5,7 +5,7 @@ class SporAlfaAppBar extends StatelessWidget implements PreferredSizeWidget {
   const SporAlfaAppBar({Key? key}) : super(key: key);
 
   @override
-  Size get preferredSize => const Size.fromHeight(30);
+  Size get preferredSize => const Size.fromHeight(40);
 
   @override
   Widget build(BuildContext context) {

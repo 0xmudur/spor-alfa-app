@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:spor_alfa_app/common/spor_alfa_progress_bar.dart';
+import 'package:spor_alfa_app/view/detail_view/detail_view.dart';
 import 'package:spor_alfa_app/view/home_view/widget/news_headline_widget.dart';
 import 'package:spor_alfa_app/view/home_view/widget/social_media_links_widget.dart';
 import 'package:spor_alfa_app/view_model/home_view_model.dart';
@@ -52,7 +53,9 @@ class _HomeViewState extends State<HomeView> {
                       height: 250, child: Center(child: SporAlfaProgressBar()))
                   : Container(
                       height: 250,
-                      child: NewsHeadlineWidget(viewModel: viewModel),
+                      child: InkWell(
+                          onTap: () => Navigator.push(context, MaterialPageRoute(builder: (context) => DetailView())),
+                          child: NewsHeadlineWidget(viewModel: viewModel)),
                     ),
 
               /// Focus news
