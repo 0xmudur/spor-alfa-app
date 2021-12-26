@@ -16,7 +16,7 @@ class HomeView extends StatefulWidget {
 
 class _HomeViewState extends State<HomeView> {
   HomeViewModel viewModel = serviceLocator<HomeViewModel>();
-  int moreNewsIndex = 3;
+  int moreNewsSkip = 3;
 
   @override
   void initState() {
@@ -38,8 +38,8 @@ class _HomeViewState extends State<HomeView> {
               if (metrics.pixels == 0){
                 print('At top');
               } else {
-                moreNewsIndex += 3;
-                viewModel.getMoreNews(moreNewsIndex, 5 + moreNewsIndex);
+                moreNewsSkip += 3;
+                viewModel.getMoreNews(3, 5 + moreNewsSkip);
               }
             }
             return true;
