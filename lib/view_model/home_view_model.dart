@@ -24,7 +24,6 @@ class HomeViewModel with ChangeNotifier {
   late Uint8List newsImage;
   List<Uint8List> headlineImages = [];
 
-
   Future<void> getFocusNews(int limit, int skip) async {
     currentState = CurrentState.loading;
     var response = await webService.getNews(limit, skip);

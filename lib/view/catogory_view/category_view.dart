@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:spor_alfa_app/common/spor_alfa_theme.dart';
-import 'package:spor_alfa_app/view_model/category_view_model.dart';
+import 'package:spor_alfa_app/view_model/categories_view_model.dart';
 
 import '../../service_locator.dart';
+
+/// IF parent id == null => baseCategory
+///
 
 class CategoryView extends StatefulWidget {
   const CategoryView({Key? key}) : super(key: key);
@@ -12,7 +15,7 @@ class CategoryView extends StatefulWidget {
 }
 
 class _CategoryViewState extends State<CategoryView> {
-CategoryViewModel viewModel = serviceLocator<CategoryViewModel>();
+CategoriesViewModel viewModel = serviceLocator<CategoriesViewModel>();
 
   @override
   void initState() {

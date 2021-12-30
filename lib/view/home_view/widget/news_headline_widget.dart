@@ -28,7 +28,6 @@ class _NewsHeadlineWidgetState extends State<NewsHeadlineWidget> {
   @override
   Widget build(BuildContext context) {
 
-
     final List<Widget> imageSliders = imgList.asMap().entries.map((item) => Container(
       child: Stack(
         children: <Widget>[

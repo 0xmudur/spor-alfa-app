@@ -33,10 +33,10 @@ class _HomeViewState extends State<HomeView> {
       create: (context) => viewModel,
       child: Consumer<HomeViewModel>(builder: (context, model, child) {
         return NotificationListener<ScrollEndNotification>(
-          onNotification: (scrollEnd){
+          onNotification: (scrollEnd) {
             var metrics = scrollEnd.metrics;
             if (metrics.atEdge) {
-              if (metrics.pixels == 0){
+              if (metrics.pixels == 0) {
                 print('At top');
               } else {
                 moreNewsSkip += 3;
@@ -54,7 +54,7 @@ class _HomeViewState extends State<HomeView> {
                   : Container(
                       height: 250,
                       child: InkWell(
-                          onTap: () => Navigator.push(context, MaterialPageRoute(builder: (context) => DetailView())),
+                          // onTap: () => Navigator.push(context, MaterialPageRoute(builder: (context) => DetailView(viewModel: viewModel,))),
                           child: NewsHeadlineWidget(viewModel: viewModel)),
                     ),
 
@@ -72,9 +72,23 @@ class _HomeViewState extends State<HomeView> {
                         itemBuilder: (context, index) => Container(
                           padding: EdgeInsets.only(top: 8),
                           height: 220,
-                          child: NewsFocusWidget(
-                              title: viewModel.focusNews[index].title,
-                              imageFilePath: viewModel.focusNews[index].imageSrc),
+                          child: InkWell(
+                            onTap: () => Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => DetailView(
+                                        title: viewModel.focusNews[index].title,
+                                        imgFilePath:
+                                            viewModel.focusNews[index].imageSrc,
+                                        body: viewModel.focusNews[index].body,
+                                        publishedAt: viewModel
+                                            .focusNews[index].publishedAt
+                                            .toString()))),
+                            child: NewsFocusWidget(
+                                title: viewModel.focusNews[index].title,
+                                imageFilePath:
+                                    viewModel.focusNews[index].imageSrc),
+                          ),
                         ),
                       ),
                     ),
@@ -92,10 +106,24 @@ class _HomeViewState extends State<HomeView> {
                         itemCount: viewModel.moreNews.length,
                         itemBuilder: (context, index) => Container(
                             height: 90,
-                            child: NewsMoreWidget(
-                                title: viewModel.moreNews[index].title,
-                                imageFilePath:
-                                    viewModel.moreNews[index].imageSrc)),
+                            child: InkWell(
+                              onTap: () => Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => DetailView(
+                                          title:
+                                              viewModel.focusNews[index].title,
+                                          imgFilePath: viewModel
+                                              .focusNews[index].imageSrc,
+                                          body: viewModel.focusNews[index].body,
+                                          publishedAt: viewModel
+                                              .focusNews[index].publishedAt
+                                              .toString()))),
+                              child: NewsMoreWidget(
+                                  title: viewModel.moreNews[index].title,
+                                  imageFilePath:
+                                      viewModel.moreNews[index].imageSrc),
+                            )),
                       ),
                     ),
             ],

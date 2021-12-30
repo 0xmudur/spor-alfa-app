@@ -16,21 +16,17 @@ enum CurrentState {
   loaded,
 }
 
-class CategoryViewModel with ChangeNotifier {
+class CategoriesViewModel with ChangeNotifier {
   WebService webService = serviceLocator<WebService>();
   CurrentState currentState = CurrentState.idle;
   List categories = [];
-
 
   Future<void> getCategories() async {
     currentState = CurrentState.loading;
     var response = await webService.getCategory();
     print(response);
-    // Category category = Category.fromJson(response);
-    // category.forEach((element) => categories.add(element));
     currentState = CurrentState.loaded;
     notifyListeners();
   }
 
-  
 }
