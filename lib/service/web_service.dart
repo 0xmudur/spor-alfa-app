@@ -54,13 +54,13 @@ class WebService {
     }
   }
 
-  Future<String> getCategoryWithId(int id, int limit, int skip) async {
-    final response = await http.get(Uri.parse(baseURL + '/category/public/by_category/${id}?limit=${limit}&skip=${skip}'));
+  Future<Map<String, dynamic>> getNewsWithCategoryId(int id, int limit, int skip) async {
+    final response = await http.get(Uri.parse(baseURL + '/news/public/by_category/${id}?limit=${limit}&skip=${skip}'));
 
     if (response.statusCode == 200) {
       var decodedResponse = utf8.decode(response.bodyBytes);
-      print(decodedResponse);
-      return decodedResponse;
+      jsonDecode(decodedResponse);
+      return jsonDecode(decodedResponse);
     } else {
       throw Exception('Failed to load get all users phone number');
     }

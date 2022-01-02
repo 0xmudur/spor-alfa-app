@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:spor_alfa_app/model/category.dart';
 import 'package:spor_alfa_app/model/news.dart' as FOCUS;
 import 'package:spor_alfa_app/model/headline.dart' as HEADLINE;
+import 'package:spor_alfa_app/model/news.dart';
 import 'package:spor_alfa_app/service/web_service.dart';
 
 import '../service_locator.dart';
@@ -18,6 +19,7 @@ class CategoriesViewModel with ChangeNotifier {
   List<Map<int, String>> baseCategories = [];
   List<Map<int, String>> subCategories = [];
   List<Map<Map<int, String>, List>> mergedCategories = [];
+  List filteredNews = [];
 
   Future<void> getCategories() async {
     currentState = CurrentState.loading;
@@ -35,14 +37,12 @@ class CategoriesViewModel with ChangeNotifier {
     for (int i = 0; i < categories.length; i++) {
       categories[i].parentId ?? baseCategories.add({categories[i].id: categories[i].name});
     }
-    print("baseCategories: ${baseCategories}");
   }
 
   void parseSubCategories(List<Category> categories) {
     for (int i = 0; i < categories.length; i++) {
       if (categories[i].parentId != null) subCategories.add({categories[i].parentId!: categories[i].name});
     }
-    print("subCategories: ${subCategories}");
   }
 
   void mergeCategories() {
@@ -55,7 +55,15 @@ class CategoriesViewModel with ChangeNotifier {
       }
       mergedCategories.add({{baseCategories[i].keys.first: baseCategories[i].values.first}: tempList});
     }
-    print("mergedCategories : ${mergedCategories}");
+  }
+
+  Future<void> getNewsWithCategoryId(int id, int limit, int skip) async {
+    currentState = CurrentState.loading;
+    var response = await webService.getNewsWithCategoryId(id, limit, skip);
+    News news = News.fromJson(response);
+    news.items.forEach((element) => filteredNews.add(element));
+    currentState = CurrentState.loaded;
+    notifyListeners();
   }
 
 }

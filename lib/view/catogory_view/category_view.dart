@@ -32,8 +32,6 @@ class _CategoryViewState extends State<CategoryView> {
           builder: (context, model, child) => ListView.builder(
               itemCount: viewModel.baseCategories.length,
               itemBuilder: (context, index) {
-                // print("HERE: " + viewModel.mergedCategories[index].values.first.length);
-                // var subCategory = viewModel.mergedCategories[index].values.first.forEach((element) { element.});
                 return ExpansionTile(
                   collapsedIconColor: SporAlfaTheme.primaryColor,
                   collapsedTextColor: SporAlfaTheme.primaryColor,

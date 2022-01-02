@@ -28,7 +28,7 @@ class MainView extends StatelessWidget {
       child: Consumer<MainViewModel>(
         builder: (context, model, child) => Scaffold(
             // extendBodyBehindAppBar: true,
-          appBar: const SporAlfaAppBar(),
+          appBar: SporAlfaAppBar(),
           body: _widgetOptions.elementAt(model.selectedIndex),
           bottomNavigationBar: BottomNavigationBar(
             backgroundColor: SporAlfaTheme.primaryColor,
