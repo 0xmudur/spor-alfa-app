@@ -42,12 +42,25 @@ class WebService {
     }
   }
 
-  Future<List<dynamic>> getCategory() async {
+  Future<String> getCategory() async {
     final response = await http.get(Uri.parse(baseURL + '/category/public'));
 
     if (response.statusCode == 200) {
       var decodedResponse = utf8.decode(response.bodyBytes);
-      return jsonDecode(decodedResponse);;
+
+      return decodedResponse;
+    } else {
+      throw Exception('Failed to load get all users phone number');
+    }
+  }
+
+  Future<String> getCategoryWithId(int id, int limit, int skip) async {
+    final response = await http.get(Uri.parse(baseURL + '/category/public/by_category/${id}?limit=${limit}&skip=${skip}'));
+
+    if (response.statusCode == 200) {
+      var decodedResponse = utf8.decode(response.bodyBytes);
+      print(decodedResponse);
+      return decodedResponse;
     } else {
       throw Exception('Failed to load get all users phone number');
     }

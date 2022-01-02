@@ -2,7 +2,6 @@
 //
 //     final category = categoryFromJson(jsonString);
 
-import 'package:meta/meta.dart';
 import 'dart:convert';
 
 List<Category> categoryFromJson(String str) => List<Category>.from(json.decode(str).map((x) => Category.fromJson(x)));
@@ -22,7 +21,7 @@ class Category {
   String name;
   String url;
   String imageSrc;
-  int parentId;
+  int? parentId;
 
   factory Category.fromJson(Map<String, dynamic> json) => Category(
     id: json["id"],
